@@ -18,9 +18,9 @@ bot = Client(
 @bot.on_message(filters.command("start"))
 async def _start(_, msg: Message):
     START = """
-**Hii {}**, `I am MongoDB Url Checker Bot, Just Send me your MongoDB Url I will tell your Url having any issues to connect or not.`
+**Hii {}**, `ɪ ᴀᴍ ᴍᴏɴɢᴏᴅʙ ᴜʀʟ ᴄʜᴇᴄᴋᴇʀ ʙᴏᴛ, ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ʏᴏᴜʀ ᴍᴏɴɢᴏᴅʙ ᴜʀʟ ɪ ᴡɪʟʟ ᴛᴇʟʟ ʏᴏᴜʀ ᴜʀʟ ʜᴀᴠɪɴɢ ᴀɴʏ ɪssᴜᴇs ᴛᴏ ᴄᴏɴɴᴇᴄᴛ ᴏʀ ɴᴏᴛ.`
 
-__Made with ❤ by [Krishna](https://t.me/Krishna_Singhal)__.
+__|| ᴍᴀᴅᴇ ᴡɪᴛʜ 🖤 ʙʏ [×͜× ᴄ͢͢͢ʀɪᴍɪɴᴧʟ࿐](https://t.me/CRiMinAl_B0Y) 🥀 ||"__.
 """
     await msg.reply(START.format(msg.from_user.mention), disable_web_page_preview=True)
 
@@ -37,21 +37,21 @@ async def _check(_, msg: Message):
     if len(msg.command) > 1:
         url = msg.command[1]
     else:
-        return await msg.reply("`URL not Found!`")
-    await check_url(msg, url)
+        return await msg.reply("`ᴜʀʟ ɴᴏᴛ ғᴏᴜɴᴅ!`")
+    await check_url(msg, url) 
     try:
         await msg.delete()  # Will work also in group so Pass chat admin Exception.
     except:
-        await msg.reply("`I can't delete this Url Myself, Any admin delete this for Security.")
+        await msg.reply("`ɪ ᴄᴀɴ'ᴛ ᴅᴇʟᴇᴛᴇ ᴛʜɪs ᴜʀʟ ᴍʏsᴇʟғ, ᴀɴʏ ᴀᴅᴍɪɴ ᴅᴇʟᴇᴛᴇ ᴛʜɪs ғᴏʀ sᴇᴄᴜʀɪᴛʏ.")
 
 
 async def check_url(msg: Message, url: str):
     PATTERN = r"^mongodb((?:\+srv))?:\/\/(.*):(.*)@[a-z0-9]+\.(.*)\.mongodb\.net\/(.*)\?retryWrites\=true&w\=majority"
     s_r = re.compile("[@_!#$%^&*()<>?/\|}{~:]")
     match = re.match(PATTERN, url)
-    if not match:
-        return await msg.reply(f"**Invalid MongoDB Url**: `{url}`")
-    try:
+    if not match:   
+        return await msg.reply(f"**ɪɴᴠᴀʟɪᴅ ᴍᴏɴɢᴏᴅʙ ᴜʀʟ**: `{url}`")
+    try: 
         pymongo.MongoClient(url)
     except Exception as e:
         if "Username and password must be escaped" in str(e):
@@ -67,17 +67,17 @@ async def check_url(msg: Message, url: str):
             if '<' or '>' in dbname:
                 dbname = "Userge"
             new_url = raw_url.format(username, password, key, dbname)
-            await msg.reply(
-                "`Your URL having Invalid Username and Password.`\n\n"
-                "`I quoted your Username and Password and created new DB_URI, "
-                f"Use this to connect to MongoDB.`\n\n`{new_url}`"
+            await msg.reply( 
+                "`ʏᴏᴜʀ ᴜʀʟ ʜᴀᴠɪɴɢ ɪɴᴠᴀʟɪᴅ ᴜsᴇʀɴᴀᴍᴇ ᴀɴᴅ ᴘᴀssᴡᴏʀᴅ.`\n\n"
+                "`ɪ ǫᴜᴏᴛᴇᴅ ʏᴏᴜʀ ᴜsᴇʀɴᴀᴍᴇ ᴀɴᴅ ᴘᴀssᴡᴏʀᴅ ᴀɴᴅ ᴄʀᴇᴀᴛᴇᴅ ɴᴇᴡ DB_URI, "
+                f"ᴜsᴇ ᴛʜɪs ᴛᴏ ᴄᴏɴɴᴇᴄᴛ ᴛᴏ ᴍᴏɴɢᴏᴅʙ.`\n\n`{new_url}`"
             )
     else:
         if ('<' or '>') in match.group(5):
             dbname = "Userge"
             new_url = url.replace(match.group(5), dbname)
             return await msg.reply(f"`you forgot to remove '<' and '>' signs.`\n\n**Use this URL:** `{new_url}`")
-        await msg.reply("`This URL is ERROR Free. you can use this to connect to MongoDb.`")
+        await msg.reply("`ᴛʜɪs ᴜʀʟ ɪs ᴇʀʀᴏʀ ғʀᴇᴇ. ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴛᴏ ᴄᴏɴɴᴇᴄᴛ ᴛᴏ ᴍᴏɴɢᴏᴅʙ.`")
 
 
 if __name__ == "__main__":
