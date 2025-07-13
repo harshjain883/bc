@@ -1,0 +1,19 @@
+# Exported from Render on 2025-07-13T16:36:16Z
+services:
+- type: web
+  name: bc
+  runtime: docker
+  repo: https://github.com/harshjain883/bc
+  plan: free
+  envVars:
+  - key: BOT_TOKEN
+    sync: false
+  - key: API_HASH
+    sync: false
+  - key: API_ID
+    sync: false
+  region: oregon
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+  autoDeployTrigger: commit
+version: "1"
