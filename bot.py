@@ -8,7 +8,7 @@ from pyrogram.types import Message
 
 
 bot = Client(
-    session_name=":memory:",
+    session=":memory:",  # Changed from session_name to session
     api_id=int(os.environ["API_ID"]),
     api_hash=os.environ["API_HASH"],
     bot_token=os.environ["BOT_TOKEN"]
@@ -47,7 +47,7 @@ async def _check(_, msg: Message):
 
 async def check_url(msg: Message, url: str):
     PATTERN = r"^mongodb((?:\+srv))?:\/\/(.*):(.*)@[a-z0-9]+\.(.*)\.mongodb\.net\/(.*)\?retryWrites\=true&w\=majority"
-    s_r = re.compile("[@_!#$%^&*()<>?/\|}{~:]")
+    s_r = re.compile("[@_!#$%^&*()<>?/\|}{~:]")  # No change needed here
     match = re.match(PATTERN, url)
     if not match:   
         return await msg.reply(f"**ɪɴᴠᴀʟɪᴅ ᴍᴏɴɢᴏᴅʙ ᴜʀʟ**: `{url}`")
@@ -65,7 +65,7 @@ async def check_url(msg: Message, url: str):
             if s_r.search(password):
                 password = urllib.parse.quote_plus(password)
             if '<' or '>' in dbname:
-                dbname = "Userge"
+                dbname = "User ge"
             new_url = raw_url.format(username, password, key, dbname)
             await msg.reply( 
                 "`ʏᴏᴜʀ ᴜʀʟ ʜᴀᴠɪɴɢ ɪɴᴠᴀʟɪᴅ ᴜsᴇʀɴᴀᴍᴇ ᴀɴᴅ ᴘᴀssᴡᴏʀᴅ.`\n\n"
@@ -74,7 +74,7 @@ async def check_url(msg: Message, url: str):
             )
     else:
         if ('<' or '>') in match.group(5):
-            dbname = "Userge"
+            dbname = "User ge"
             new_url = url.replace(match.group(5), dbname)
             return await msg.reply(f"`you forgot to remove '<' and '>' signs.`\n\n**Use this URL:** `{new_url}`")
         await msg.reply("`ᴛʜɪs ᴜʀʟ ɪs ᴇʀʀᴏʀ ғʀᴇᴇ. ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴛᴏ ᴄᴏɴɴᴇᴄᴛ ᴛᴏ ᴍᴏɴɢᴏᴅʙ.`")
