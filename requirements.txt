@@ -2,3 +2,4 @@ dnspython
 pymongo
 pyrogram
 tgcrypto
+flask
