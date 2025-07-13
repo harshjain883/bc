@@ -47,7 +47,7 @@ async def _check(_, msg: Message):
 
 async def check_url(msg: Message, url: str):
     PATTERN = r"^mongodb((?:\+srv))?:\/\/(.*):(.*)@[a-z0-9]+\.(.*)\.mongodb\.net\/(.*)\?retryWrites\=true&w\=majority"
-    s_r = re.compile("[@_!#$%^&*()<>?/\|}{~:]")  # No change needed here
+    s_r = re.compile(r"[@_!#$%^&*()<>?/\|}{~:]")  # Use raw string to avoid escape issues
     match = re.match(PATTERN, url)
     if not match:   
         return await msg.reply(f"**ɪɴᴠᴀʟɪᴅ ᴍᴏɴɢᴏᴅʙ ᴜʀʟ**: `{url}`")
