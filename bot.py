@@ -8,7 +8,7 @@ from pyrogram.types import Message
 
 
 bot = Client(
-    session=":memory:",  # Changed from session_name to session
+    name=":memory:",  # Changed from session to name
     api_id=int(os.environ["API_ID"]),
     api_hash=os.environ["API_HASH"],
     bot_token=os.environ["BOT_TOKEN"]
